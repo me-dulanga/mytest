@@ -1,1 +1,102 @@
-<h2>Hello World</h2>
+<!DOCTYPE html>
+<html>
+    <head>		
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+        <title>Menu Test</title>
+		<script src="lib/jquery.min.js"></script>
+		<link rel="stylesheet" href="lib/jquery.contextMenu.css">
+		<script src="lib/jquery.contextMenu.js"></script>
+		<script src="lib/jquery.ui.position.js"></script>
+		<style>
+			li.context-menu-item {
+			font-size: 1.3rem;
+			margin-top: 5px;
+			}
+
+			@media only screen and (max-width: 600px) {
+				li.context-menu-submenu > .context-menu-list {
+					top: .5em !important;
+					position: relative !important;
+				}
+			}
+
+
+		</style>
+		
+		
+	</head>
+    <body>
+		
+        <p>
+			<button class="context-menu-one btn btn-neutral">TEST BUTTON</button>		
+		</p>
+		
+		
+		<script>
+			
+			// Setup static menu items
+			let menuItems =	{
+				"item1": {"name": "Item 1 "},			
+				"item2": {
+					"name": "Item 2", 
+					"items": {
+						"sub1": {"name": "Sub-Item 1"},
+						"sub2": {"name": "Sub-Item 2"},
+						"sub3": {"name": "Sub-Item 3"},
+						"sub4": {"name": "Sub-Item 4"},
+						"sub5": {"name": "Sub-Item 5"},
+						"sub6": {"name": "Sub-Item 6"},
+					},
+				},
+				"item3": {
+					"name": "Item 3", 
+					"items": {
+						"sub1": {"name": "Sub-Item 1"},
+						"sub2": {"name": "Sub-Item 2"},
+						"sub3": {"name": "Sub-Item 3"}
+						
+					}
+				},
+				"item4": {
+					"name": "Item 4", 
+					"items": {
+						"sub1": {"name": "Sub-Item 1"},
+						"sub2": {"name": "Sub-Item 2"},
+						"sub3": {"name": "Sub-Item 3"},
+						"sub4": {"name": "Sub-Item 4"},
+						"sub5": {"name": "Sub-Item 5"},
+						"sub6": {"name": "Sub-Item 6"},
+						"sub7": {"name": "Sub-Item 7"},
+						"sub8": {"name": "Sub-Item 8"},
+						"sub9": {"name": "Sub-Item 9"},
+						"sub10": {"name": "Sub-Item 10"},
+						"sub11": {"name": "Sub-Item 11"},
+						"sub12": {"name": "Sub-Item 12"},
+						"sub13": {"name": "Sub-Item 13"},
+						"sub14": {"name": "Sub-Item 14"},
+						"sub15": {"name": "Sub-Item 15"}
+					}
+				},
+			};
+			
+			
+			
+			// Initializing Context menu
+			$.contextMenu({
+				selector: '.context-menu-one', 
+				trigger: 'left',
+				callback: function(key, options) {
+					var m = "clicked: " + key;
+					window.console && console.log(m) || alert(m); 
+					// window.console && console.log(m); 
+					
+				},
+				items: menuItems
+			});
+			
+			
+			
+		</script>
+	</body>
+</html>	
