@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ripples</title>
+<style>
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+.center-div {
+    position: absolute;
+    left: calc(50% - 300px);
+    /* right: 40%; */
+    top: calc(50% - 200px);
+    /* bottom: 40%; */
+    /* margin: auto; */
+    /* width: 50%; */
+    /* border: 3px solid green; */
+    /* padding: 10px; */
+}
+</style>
+</head>
+<body style="background-color:blue">
+    <svg id='ripples' viewBox="-8 -4 16 10"  >
+        <circle cx="0" cy="0" r="8" fill="Plum" opacity="0.7" style='display:none'>
+            <animateTransform attributeName="transform" type="scale" additive="sum" from="0 0" to="1 1" 
+                dur="3s" repeatCount="indefinite" begin="indefinite"></animateTransform>
+        </circle>
+    <!-- </svg>
+    <svg viewBox="-8 -4 16 10"> -->
+        <circle cx="0" cy="0" r="8" fill="Plum" opacity="0.7" style='display:none'>
+            <animateTransform attributeName="transform" type="scale" additive="sum" from="0 0" to="1 1" 
+                dur="3s" repeatCount="indefinite" begin="indefinite"></animateTransform>
+        </circle>
+        <circle cx="0" cy="0" r="8" fill="Plum" opacity="0.7" style='display:none'>
+            <animateTransform attributeName="transform" type="scale" additive="sum" from="0 0" to="1 1" 
+                dur="3s" repeatCount="indefinite" begin="indefinite"></animateTransform>
+        </circle>
+    </svg>
+
+    <img id='logo' class="center-div" src="logo.png" alt="">
+
+    <script>
+        (function(){
+        var ripples = document.getElementById("ripples");
+        var circles = document.getElementsByTagName('circle')
+        var anims = document.getElementsByTagName('animateTransform')
+
+        function startanimate(){
+            for( var i = 0; i < circles.length; i++) {
+              
+                (function (i, animation, circle) {
+                    setTimeout((i) => {
+                        animation.beginElement();
+                        circle.style.display = "block";
+                        console.log(i, animation);
+                    }, 1000*i); 
+                })(i, anims[i], circles[i]);
+
+            }
+        }
+
+        function stopanimate(){
+            for( var i = 0; i < circles.length; i++) {
+                anims[i].beginElement();
+                circles[i].style.display = "none"; 
+
+            }
+        }
+
+        var logo = document.getElementById('logo')
+        logo.addEventListener('mouseover', function(){
+            // ripples.style.display = "block";
+
+            startanimate();
+        })
+        logo.addEventListener('mouseout', function(){
+            // ripples.style.display = "none";
+            stopanimate()
+        })
+    })();
+    </script>
+    
+</body>
+</html>
